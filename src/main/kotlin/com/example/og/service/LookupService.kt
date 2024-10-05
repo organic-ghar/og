@@ -5,7 +5,9 @@ import com.example.og.repository.LookupRepository
 import org.springframework.stereotype.Service
 
 @Service
-class LookupService(private val lookupRepository: LookupRepository) {
+class LookupService(
+    private val lookupRepository: LookupRepository,
+) {
 
     fun getAllLookups(): List<Lookup> {
         return lookupRepository.findAll()

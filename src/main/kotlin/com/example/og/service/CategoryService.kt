@@ -5,7 +5,9 @@ import com.example.og.repository.CategoryRepository
 import org.springframework.stereotype.Service
 
 @Service
-class CategoryService(private val categoryRepository: CategoryRepository) {
+class CategoryService(
+    private val categoryRepository: CategoryRepository,
+) {
 
     fun getAllCategories(): List<Category> {
         return categoryRepository.findAll()

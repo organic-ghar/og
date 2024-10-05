@@ -5,7 +5,9 @@ import com.example.og.repository.OrderRepository
 import org.springframework.stereotype.Service
 
 @Service
-class OrderService(private val orderRepository: OrderRepository) {
+class OrderService(
+    private val orderRepository: OrderRepository,
+) {
 
     fun getAllOrders(): List<Order> {
         return orderRepository.findAll()

@@ -5,7 +5,9 @@ import com.example.og.repository.ProductReviewRepository
 import org.springframework.stereotype.Service
 
 @Service
-class ProductReviewService(private val productReviewRepository: ProductReviewRepository) {
+class ProductReviewService(
+    private val productReviewRepository: ProductReviewRepository,
+) {
 
     fun getAllReviews(): List<ProductReview> {
         return productReviewRepository.findAll()

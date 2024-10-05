@@ -5,7 +5,9 @@ import com.example.og.repository.ProductRepository
 import org.springframework.stereotype.Service
 
 @Service
-class ProductService(private val productRepository: ProductRepository) {
+class ProductService(
+    private val productRepository: ProductRepository,
+) {
 
     fun getAllProducts(): List<Product> {
         return productRepository.findAll()

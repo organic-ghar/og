@@ -5,7 +5,9 @@ import com.example.og.repository.AddressRepository
 import org.springframework.stereotype.Service
 
 @Service
-class AddressService(private val addressRepository: AddressRepository) {
+class AddressService(
+    private val addressRepository: AddressRepository,
+) {
 
     fun getAllAddresses(): List<Address> {
         return addressRepository.findAll()

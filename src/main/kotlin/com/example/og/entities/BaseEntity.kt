@@ -5,10 +5,10 @@ import java.time.LocalDateTime
 
 @MappedSuperclass
 abstract class BaseEntity(
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     var createdBy: String? = null,
 
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     var createdDate: LocalDateTime = LocalDateTime.now(),
 
     @Column(nullable = true)
