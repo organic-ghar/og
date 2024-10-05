@@ -1,0 +1,11 @@
+version: "3"
+services:
+  database-organic:
+    image: postgres:14.6
+    container_name: postgres-organic
+    environment:
+      POSTGRES_DB: og
+      POSTGRES_USER: organicGhar
+      POSTGRES_PASSWORD: og123
+    ports:
+      - "5432:5432"
