@@ -5,6 +5,7 @@ import com.example.og.service.ProductReviewService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 @RestController
 @RequestMapping("/api/reviews")
@@ -19,13 +20,13 @@ class ProductReviewController(
     }
 
     @GetMapping("/product/{productId}")
-    fun getReviewsByProduct(@PathVariable productId: Long): ResponseEntity<List<ProductReview>> {
+    fun getReviewsByProduct(@PathVariable productId: UUID): ResponseEntity<List<ProductReview>> {
         val reviews = productReviewService.getReviewsByProduct(productId)
         return ResponseEntity.ok(reviews)
     }
 
     @GetMapping("/customer/{customerId}")
-    fun getReviewsByCustomer(@PathVariable customerId: Long): ResponseEntity<List<ProductReview>> {
+    fun getReviewsByCustomer(@PathVariable customerId: UUID): ResponseEntity<List<ProductReview>> {
         val reviews = productReviewService.getReviewsByCustomer(customerId)
         return ResponseEntity.ok(reviews)
     }
@@ -38,7 +39,7 @@ class ProductReviewController(
 
     @PutMapping("/{id}")
     fun updateReview(
-        @PathVariable id: Long,
+        @PathVariable id: UUID,
         @RequestBody updatedReview: ProductReview
     ): ResponseEntity<ProductReview?> {
         val review = productReviewService.updateReview(id, updatedReview)
@@ -50,7 +51,7 @@ class ProductReviewController(
     }
 
     @DeleteMapping("/{id}")
-    fun deleteReview(@PathVariable id: Long): ResponseEntity<Void> {
+    fun deleteReview(@PathVariable id: UUID): ResponseEntity<Void> {
         productReviewService.deleteReview(id)
         return ResponseEntity.noContent().build()
     }

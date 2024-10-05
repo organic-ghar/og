@@ -3,6 +3,7 @@ package com.example.og.service
 import com.example.og.entities.Category
 import com.example.og.repository.CategoryRepository
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class CategoryService(
@@ -13,7 +14,7 @@ class CategoryService(
         return categoryRepository.findAll()
     }
 
-    fun getCategoryById(categoryId: Long): Category? {
+    fun getCategoryById(categoryId: UUID): Category? {
         return categoryRepository.findById(categoryId).orElse(null)
     }
 
@@ -21,12 +22,12 @@ class CategoryService(
         return categoryRepository.save(category)
     }
 
-    fun updateCategory(categoryId: Long, updatedCategory: Category): Category? {
+    fun updateCategory(categoryId: UUID, updatedCategory: Category): Category? {
         val existingCategory = categoryRepository.findById(categoryId).orElse(null) ?: return null
         return categoryRepository.save(updatedCategory.copy(id = existingCategory.id))
     }
 
-    fun deleteCategory(categoryId: Long) {
+    fun deleteCategory(categoryId: UUID) {
         categoryRepository.deleteById(categoryId)
     }
 }

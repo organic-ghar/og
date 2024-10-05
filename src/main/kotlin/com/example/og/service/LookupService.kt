@@ -3,6 +3,7 @@ package com.example.og.service
 import com.example.og.entities.Lookup
 import com.example.og.repository.LookupRepository
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class LookupService(
@@ -21,12 +22,12 @@ class LookupService(
         return lookupRepository.save(lookup)
     }
 
-    fun updateLookup(lookupId: Long, updatedLookup: Lookup): Lookup? {
+    fun updateLookup(lookupId: UUID, updatedLookup: Lookup): Lookup? {
         val existingLookup = lookupRepository.findById(lookupId).orElse(null) ?: return null
         return lookupRepository.save(updatedLookup.copy(id = existingLookup.id))
     }
 
-    fun deleteLookup(lookupId: Long) {
+    fun deleteLookup(lookupId: UUID) {
         lookupRepository.deleteById(lookupId)
     }
 }

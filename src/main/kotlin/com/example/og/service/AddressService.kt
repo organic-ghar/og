@@ -3,6 +3,7 @@ package com.example.og.service
 import com.example.og.entities.Address
 import com.example.og.repository.AddressRepository
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class AddressService(
@@ -13,11 +14,11 @@ class AddressService(
         return addressRepository.findAll()
     }
 
-    fun getAddressById(addressId: Long): Address? {
+    fun getAddressById(addressId: UUID): Address? {
         return addressRepository.findById(addressId).orElse(null)
     }
 
-    fun getAddressesByCustomer(customerId: Long): List<Address> {
+    fun getAddressesByCustomer(customerId: UUID): List<Address> {
         return addressRepository.findByCustomerId(customerId)
     }
 
@@ -25,12 +26,12 @@ class AddressService(
         return addressRepository.save(address)
     }
 
-    fun updateAddress(addressId: Long, updatedAddress: Address): Address? {
+    fun updateAddress(addressId: UUID, updatedAddress: Address): Address? {
         val existingAddress = addressRepository.findById(addressId).orElse(null) ?: return null
         return addressRepository.save(updatedAddress.copy(id = existingAddress.id))
     }
 
-    fun deleteAddress(addressId: Long) {
+    fun deleteAddress(addressId: UUID) {
         addressRepository.deleteById(addressId)
     }
 }

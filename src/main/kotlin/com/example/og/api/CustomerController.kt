@@ -5,6 +5,7 @@ import com.example.og.service.CustomerService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 @RestController
 @RequestMapping("/api/customers")
@@ -19,7 +20,7 @@ class CustomerController(
     }
 
     @GetMapping("/{id}")
-    fun getCustomerById(@PathVariable id: Long): ResponseEntity<Customer?> {
+    fun getCustomerById(@PathVariable id: UUID): ResponseEntity<Customer?> {
         val customer = customerService.getCustomerById(id)
         return if (customer != null) {
             ResponseEntity.ok(customer)
@@ -35,7 +36,7 @@ class CustomerController(
     }
 
     @PutMapping("/{id}")
-    fun updateCustomer(@PathVariable id: Long, @RequestBody updatedCustomer: Customer): ResponseEntity<Customer?> {
+    fun updateCustomer(@PathVariable id: UUID, @RequestBody updatedCustomer: Customer): ResponseEntity<Customer?> {
         val customer = customerService.updateCustomer(id, updatedCustomer)
         return if (customer != null) {
             ResponseEntity.ok(customer)
@@ -45,7 +46,7 @@ class CustomerController(
     }
 
     @DeleteMapping("/{id}")
-    fun deleteCustomer(@PathVariable id: Long): ResponseEntity<Void> {
+    fun deleteCustomer(@PathVariable id: UUID): ResponseEntity<Void> {
         customerService.deleteCustomer(id)
         return ResponseEntity.noContent().build()
     }
