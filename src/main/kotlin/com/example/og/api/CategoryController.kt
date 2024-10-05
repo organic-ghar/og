@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/categories")
-class CategoryController(private val categoryService: CategoryService) {
+class CategoryController(
+    private val categoryService: CategoryService,
+) {
 
     @GetMapping
     fun getAllCategories(): ResponseEntity<List<Category>> {

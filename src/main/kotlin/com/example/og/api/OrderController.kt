@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/orders")
-class OrderController(private val orderService: OrderService) {
+class OrderController(
+    private val orderService: OrderService,
+) {
 
     @GetMapping
     fun getAllOrders(): ResponseEntity<List<Order>> {

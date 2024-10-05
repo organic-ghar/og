@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/lookups")
-class LookupController(private val lookupService: LookupService) {
+class LookupController(
+    private val lookupService: LookupService,
+) {
 
     @GetMapping
     fun getAllLookups(): ResponseEntity<List<Lookup>> {

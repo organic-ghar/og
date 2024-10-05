@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/reviews")
-class ProductReviewController(private val productReviewService: ProductReviewService) {
+class ProductReviewController(
+    private val productReviewService: ProductReviewService,
+) {
 
     @GetMapping
     fun getAllReviews(): ResponseEntity<List<ProductReview>> {
@@ -35,7 +37,10 @@ class ProductReviewController(private val productReviewService: ProductReviewSer
     }
 
     @PutMapping("/{id}")
-    fun updateReview(@PathVariable id: Long, @RequestBody updatedReview: ProductReview): ResponseEntity<ProductReview?> {
+    fun updateReview(
+        @PathVariable id: Long,
+        @RequestBody updatedReview: ProductReview
+    ): ResponseEntity<ProductReview?> {
         val review = productReviewService.updateReview(id, updatedReview)
         return if (review != null) {
             ResponseEntity.ok(review)

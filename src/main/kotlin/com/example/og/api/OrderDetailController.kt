@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/order-details")
-class OrderDetailController(private val orderDetailService: OrderDetailService) {
+class OrderDetailController(
+    private val orderDetailService: OrderDetailService,
+) {
 
     @GetMapping
     fun getAllOrderDetails(): ResponseEntity<List<OrderDetail>> {
@@ -29,7 +31,10 @@ class OrderDetailController(private val orderDetailService: OrderDetailService) 
     }
 
     @PutMapping("/{id}")
-    fun updateOrderDetail(@PathVariable id: Long, @RequestBody updatedOrderDetail: OrderDetail): ResponseEntity<OrderDetail?> {
+    fun updateOrderDetail(
+        @PathVariable id: Long,
+        @RequestBody updatedOrderDetail: OrderDetail
+    ): ResponseEntity<OrderDetail?> {
         val orderDetail = orderDetailService.updateOrderDetail(id, updatedOrderDetail)
         return if (orderDetail != null) {
             ResponseEntity.ok(orderDetail)

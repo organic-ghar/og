@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/addresses")
-class AddressController(private val addressService: AddressService) {
+class AddressController(
+    private val addressService: AddressService,
+    ) {
 
     @GetMapping
     fun getAllAddresses(): ResponseEntity<List<Address>> {
