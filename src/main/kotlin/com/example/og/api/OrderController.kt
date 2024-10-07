@@ -5,10 +5,13 @@ import com.example.og.service.OrderService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 @RestController
 @RequestMapping("/api/orders")
-class OrderController(private val orderService: OrderService) {
+class OrderController(
+    private val orderService: OrderService,
+) {
 
     @GetMapping
     fun getAllOrders(): ResponseEntity<List<Order>> {
@@ -17,7 +20,7 @@ class OrderController(private val orderService: OrderService) {
     }
 
     @GetMapping("/{id}")
-    fun getOrderById(@PathVariable id: Long): ResponseEntity<Order?> {
+    fun getOrderById(@PathVariable id: UUID): ResponseEntity<Order?> {
         val order = orderService.getOrderById(id)
         return if (order != null) {
             ResponseEntity.ok(order)
@@ -33,7 +36,7 @@ class OrderController(private val orderService: OrderService) {
     }
 
     @PutMapping("/{id}")
-    fun updateOrder(@PathVariable id: Long, @RequestBody updatedOrder: Order): ResponseEntity<Order?> {
+    fun updateOrder(@PathVariable id: UUID, @RequestBody updatedOrder: Order): ResponseEntity<Order?> {
         val order = orderService.updateOrder(id, updatedOrder)
         return if (order != null) {
             ResponseEntity.ok(order)
@@ -43,7 +46,7 @@ class OrderController(private val orderService: OrderService) {
     }
 
     @DeleteMapping("/{id}")
-    fun deleteOrder(@PathVariable id: Long): ResponseEntity<Void> {
+    fun deleteOrder(@PathVariable id: UUID): ResponseEntity<Void> {
         orderService.deleteOrder(id)
         return ResponseEntity.noContent().build()
     }

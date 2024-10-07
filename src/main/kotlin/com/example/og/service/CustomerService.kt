@@ -3,15 +3,18 @@ package com.example.og.service
 import com.example.og.entities.Customer
 import com.example.og.repository.CustomerRepository
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
-class CustomerService(private val customerRepository: CustomerRepository) {
+class CustomerService(
+    private val customerRepository: CustomerRepository,
+) {
 
     fun getAllCustomers(): List<Customer> {
         return customerRepository.findAll()
     }
 
-    fun getCustomerById(customerId: Long): Customer? {
+    fun getCustomerById(customerId: UUID): Customer? {
         return customerRepository.findById(customerId).orElse(null)
     }
 
@@ -19,12 +22,12 @@ class CustomerService(private val customerRepository: CustomerRepository) {
         return customerRepository.save(customer)
     }
 
-    fun updateCustomer(customerId: Long, updatedCustomer: Customer): Customer? {
+    fun updateCustomer(customerId: UUID, updatedCustomer: Customer): Customer? {
         val existingCustomer = customerRepository.findById(customerId).orElse(null) ?: return null
         return customerRepository.save(updatedCustomer.copy(id = existingCustomer.id))
     }
 
-    fun deleteCustomer(customerId: Long) {
+    fun deleteCustomer(customerId: UUID) {
         customerRepository.deleteById(customerId)
     }
 }

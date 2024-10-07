@@ -5,10 +5,13 @@ import com.example.og.service.CategoryService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 @RestController
 @RequestMapping("/api/categories")
-class CategoryController(private val categoryService: CategoryService) {
+class CategoryController(
+    private val categoryService: CategoryService,
+) {
 
     @GetMapping
     fun getAllCategories(): ResponseEntity<List<Category>> {
@@ -17,7 +20,7 @@ class CategoryController(private val categoryService: CategoryService) {
     }
 
     @GetMapping("/{id}")
-    fun getCategoryById(@PathVariable id: Long): ResponseEntity<Category?> {
+    fun getCategoryById(@PathVariable id: UUID): ResponseEntity<Category?> {
         val category = categoryService.getCategoryById(id)
         return if (category != null) {
             ResponseEntity.ok(category)
@@ -33,7 +36,7 @@ class CategoryController(private val categoryService: CategoryService) {
     }
 
     @PutMapping("/{id}")
-    fun updateCategory(@PathVariable id: Long, @RequestBody updatedCategory: Category): ResponseEntity<Category?> {
+    fun updateCategory(@PathVariable id: UUID, @RequestBody updatedCategory: Category): ResponseEntity<Category?> {
         val category = categoryService.updateCategory(id, updatedCategory)
         return if (category != null) {
             ResponseEntity.ok(category)
@@ -43,7 +46,7 @@ class CategoryController(private val categoryService: CategoryService) {
     }
 
     @DeleteMapping("/{id}")
-    fun deleteCategory(@PathVariable id: Long): ResponseEntity<Void> {
+    fun deleteCategory(@PathVariable id: UUID): ResponseEntity<Void> {
         categoryService.deleteCategory(id)
         return ResponseEntity.noContent().build()
     }

@@ -5,10 +5,13 @@ import com.example.og.service.AddressService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 @RestController
 @RequestMapping("/api/addresses")
-class AddressController(private val addressService: AddressService) {
+class AddressController(
+    private val addressService: AddressService,
+    ) {
 
     @GetMapping
     fun getAllAddresses(): ResponseEntity<List<Address>> {
@@ -17,7 +20,7 @@ class AddressController(private val addressService: AddressService) {
     }
 
     @GetMapping("/{id}")
-    fun getAddressById(@PathVariable id: Long): ResponseEntity<Address?> {
+    fun getAddressById(@PathVariable id: UUID): ResponseEntity<Address?> {
         val address = addressService.getAddressById(id)
         return if (address != null) {
             ResponseEntity.ok(address)
@@ -27,7 +30,7 @@ class AddressController(private val addressService: AddressService) {
     }
 
     @GetMapping("/customer/{customerId}")
-    fun getAddressesByCustomer(@PathVariable customerId: Long): ResponseEntity<List<Address>> {
+    fun getAddressesByCustomer(@PathVariable customerId: UUID): ResponseEntity<List<Address>> {
         val addresses = addressService.getAddressesByCustomer(customerId)
         return ResponseEntity.ok(addresses)
     }
@@ -39,7 +42,7 @@ class AddressController(private val addressService: AddressService) {
     }
 
     @PutMapping("/{id}")
-    fun updateAddress(@PathVariable id: Long, @RequestBody updatedAddress: Address): ResponseEntity<Address?> {
+    fun updateAddress(@PathVariable id: UUID, @RequestBody updatedAddress: Address): ResponseEntity<Address?> {
         val address = addressService.updateAddress(id, updatedAddress)
         return if (address != null) {
             ResponseEntity.ok(address)
@@ -49,7 +52,7 @@ class AddressController(private val addressService: AddressService) {
     }
 
     @DeleteMapping("/{id}")
-    fun deleteAddress(@PathVariable id: Long): ResponseEntity<Void> {
+    fun deleteAddress(@PathVariable id: UUID): ResponseEntity<Void> {
         addressService.deleteAddress(id)
         return ResponseEntity.noContent().build()
     }

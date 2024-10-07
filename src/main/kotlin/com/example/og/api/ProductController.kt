@@ -5,10 +5,13 @@ import com.example.og.service.ProductService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 @RestController
 @RequestMapping("/api/products")
-class ProductController(private val productService: ProductService) {
+class ProductController(
+    private val productService: ProductService,
+) {
 
     @GetMapping
     fun getAllProducts(): ResponseEntity<List<Product>> {
@@ -17,7 +20,7 @@ class ProductController(private val productService: ProductService) {
     }
 
     @GetMapping("/{id}")
-    fun getProductById(@PathVariable id: Long): ResponseEntity<Product?> {
+    fun getProductById(@PathVariable id: UUID): ResponseEntity<Product?> {
         val product = productService.getProductById(id)
         return if (product != null) {
             ResponseEntity.ok(product)
@@ -33,7 +36,7 @@ class ProductController(private val productService: ProductService) {
     }
 
     @PutMapping("/{id}")
-    fun updateProduct(@PathVariable id: Long, @RequestBody updatedProduct: Product): ResponseEntity<Product?> {
+    fun updateProduct(@PathVariable id: UUID, @RequestBody updatedProduct: Product): ResponseEntity<Product?> {
         val product = productService.updateProduct(id, updatedProduct)
         return if (product != null) {
             ResponseEntity.ok(product)
@@ -43,7 +46,7 @@ class ProductController(private val productService: ProductService) {
     }
 
     @DeleteMapping("/{id}")
-    fun deleteProduct(@PathVariable id: Long): ResponseEntity<Void> {
+    fun deleteProduct(@PathVariable id: UUID): ResponseEntity<Void> {
         productService.deleteProduct(id)
         return ResponseEntity.noContent().build()
     }

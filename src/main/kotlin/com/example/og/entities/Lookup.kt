@@ -1,14 +1,13 @@
 package com.example.og.entities
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import jakarta.persistence.*
+import java.util.*
 
 @Entity
 data class Lookup(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0,
+    @Id 
+    @Column(name = "id", updatable = false, nullable = false)
+    val id: UUID = UUID.randomUUID(),
 
     val name: String,
     val description: String?,

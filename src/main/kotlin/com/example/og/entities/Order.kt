@@ -2,12 +2,14 @@ package com.example.og.entities
 
 import jakarta.persistence.*
 import java.time.LocalDateTime
+import java.util.*
 
 @Entity
 @Table(name = "customer_order")
 data class Order(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0,
+    @Id 
+    @Column(name = "id", updatable = false, nullable = false)
+    val id: UUID = UUID.randomUUID(),
 
     @ManyToOne
     @JoinColumn(name = "customer_id")

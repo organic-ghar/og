@@ -3,19 +3,22 @@ package com.example.og.service
 import com.example.og.entities.ProductReview
 import com.example.og.repository.ProductReviewRepository
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
-class ProductReviewService(private val productReviewRepository: ProductReviewRepository) {
+class ProductReviewService(
+    private val productReviewRepository: ProductReviewRepository,
+) {
 
     fun getAllReviews(): List<ProductReview> {
         return productReviewRepository.findAll()
     }
 
-    fun getReviewsByProduct(productId: Long): List<ProductReview> {
+    fun getReviewsByProduct(productId: UUID): List<ProductReview> {
         return productReviewRepository.findByProductId(productId)
     }
 
-    fun getReviewsByCustomer(customerId: Long): List<ProductReview> {
+    fun getReviewsByCustomer(customerId: UUID): List<ProductReview> {
         return productReviewRepository.findByCustomerId(customerId)
     }
 
@@ -23,12 +26,12 @@ class ProductReviewService(private val productReviewRepository: ProductReviewRep
         return productReviewRepository.save(review)
     }
 
-    fun updateReview(reviewId: Long, updatedReview: ProductReview): ProductReview? {
+    fun updateReview(reviewId: UUID, updatedReview: ProductReview): ProductReview? {
         val existingReview = productReviewRepository.findById(reviewId).orElse(null) ?: return null
         return productReviewRepository.save(updatedReview.copy(id = existingReview.id))
     }
 
-    fun deleteReview(reviewId: Long) {
+    fun deleteReview(reviewId: UUID) {
         productReviewRepository.deleteById(reviewId)
     }
 }

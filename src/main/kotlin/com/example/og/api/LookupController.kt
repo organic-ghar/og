@@ -5,10 +5,13 @@ import com.example.og.service.LookupService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 @RestController
 @RequestMapping("/api/lookups")
-class LookupController(private val lookupService: LookupService) {
+class LookupController(
+    private val lookupService: LookupService,
+) {
 
     @GetMapping
     fun getAllLookups(): ResponseEntity<List<Lookup>> {
@@ -29,7 +32,7 @@ class LookupController(private val lookupService: LookupService) {
     }
 
     @PutMapping("/{id}")
-    fun updateLookup(@PathVariable id: Long, @RequestBody updatedLookup: Lookup): ResponseEntity<Lookup?> {
+    fun updateLookup(@PathVariable id: UUID, @RequestBody updatedLookup: Lookup): ResponseEntity<Lookup?> {
         val lookup = lookupService.updateLookup(id, updatedLookup)
         return if (lookup != null) {
             ResponseEntity.ok(lookup)
@@ -39,7 +42,7 @@ class LookupController(private val lookupService: LookupService) {
     }
 
     @DeleteMapping("/{id}")
-    fun deleteLookup(@PathVariable id: Long): ResponseEntity<Void> {
+    fun deleteLookup(@PathVariable id: UUID): ResponseEntity<Void> {
         lookupService.deleteLookup(id)
         return ResponseEntity.noContent().build()
     }

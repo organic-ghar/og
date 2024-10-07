@@ -5,10 +5,13 @@ import com.example.og.service.ProductReviewService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 @RestController
 @RequestMapping("/api/reviews")
-class ProductReviewController(private val productReviewService: ProductReviewService) {
+class ProductReviewController(
+    private val productReviewService: ProductReviewService,
+) {
 
     @GetMapping
     fun getAllReviews(): ResponseEntity<List<ProductReview>> {
@@ -17,13 +20,13 @@ class ProductReviewController(private val productReviewService: ProductReviewSer
     }
 
     @GetMapping("/product/{productId}")
-    fun getReviewsByProduct(@PathVariable productId: Long): ResponseEntity<List<ProductReview>> {
+    fun getReviewsByProduct(@PathVariable productId: UUID): ResponseEntity<List<ProductReview>> {
         val reviews = productReviewService.getReviewsByProduct(productId)
         return ResponseEntity.ok(reviews)
     }
 
     @GetMapping("/customer/{customerId}")
-    fun getReviewsByCustomer(@PathVariable customerId: Long): ResponseEntity<List<ProductReview>> {
+    fun getReviewsByCustomer(@PathVariable customerId: UUID): ResponseEntity<List<ProductReview>> {
         val reviews = productReviewService.getReviewsByCustomer(customerId)
         return ResponseEntity.ok(reviews)
     }
@@ -35,7 +38,10 @@ class ProductReviewController(private val productReviewService: ProductReviewSer
     }
 
     @PutMapping("/{id}")
-    fun updateReview(@PathVariable id: Long, @RequestBody updatedReview: ProductReview): ResponseEntity<ProductReview?> {
+    fun updateReview(
+        @PathVariable id: UUID,
+        @RequestBody updatedReview: ProductReview
+    ): ResponseEntity<ProductReview?> {
         val review = productReviewService.updateReview(id, updatedReview)
         return if (review != null) {
             ResponseEntity.ok(review)
@@ -45,7 +51,7 @@ class ProductReviewController(private val productReviewService: ProductReviewSer
     }
 
     @DeleteMapping("/{id}")
-    fun deleteReview(@PathVariable id: Long): ResponseEntity<Void> {
+    fun deleteReview(@PathVariable id: UUID): ResponseEntity<Void> {
         productReviewService.deleteReview(id)
         return ResponseEntity.noContent().build()
     }
