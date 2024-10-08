@@ -1,0 +1,119 @@
+id,name,description,parent_id
+1,Fruits and Vegetables,Fruits and vegetables,
+2,Apples,Apple,1
+3,Bananas,Banana,1
+4,Berries,Berries like strawberries,1
+5,Citrus Fruits,Oranges and lemons,1
+6,Grapes,Grapes,1
+7,Fresh Vegetables,Fresh vegetables,1
+8,Leafy Greens,Leafy greens like spinach,7
+9,Root Vegetables,Root vegetables like carrots,7
+10,Gourds,Various gourds,7
+11,Peppers,Peppers like bell peppers,7
+12,Tomatoes,Tomatoes,7
+13,Herbs,Fresh herbs,1
+14,Basil,Fresh basil,13
+15,Mint,Fresh mint,13
+16,Coriander,Fresh coriander,13
+17,Parsley,Fresh parsley,13
+18,Exotic Fruits and Vegetables,Exotic produce,1
+19,Grains and Cereals,Grains and cereals,
+20,Rice,Brown and white rice,19
+21,Wheat,Whole wheat,19
+22,Millets,Millets like ragi and bajra,19
+23,Quinoa,Quinoa grain,19
+24,Oats,Oats,19
+25,Barley,Barley,19
+26,Pulses and Legumes,Pulses and legumes,
+27,Lentils,"Red, green, and brown lentils",26
+28,Chickpeas,Dried chickpeas,26
+29,Green Gram,Green gram (Moong),26
+30,Black Gram,Black gram (Urad),26
+31,Kidney Beans,Red kidney beans (Rajma),26
+32,Peas,Dried peas,26
+33,Spices and Condiments,Spices and condiments,
+34,Whole Spices,"Cumin, coriander, mustard seeds",33
+35,Ground Spices,"Turmeric, chili powder, garam masala",33
+36,Spice Blends,"Curry powder, chai masala",33
+37,Salt,Rock salt and sea salt,33
+38,Herbs and Seasonings,Dried herbs and seasonings,33
+39,Oils and Ghee,Oils and ghee,
+40,Cold-Pressed Oils,"Coconut, mustard, sesame oils",39
+41,Ghee,A2 organic ghee,39
+42,Olive Oil,Extra virgin and virgin olive oil,39
+43,Dairy Products,Dairy products,
+44,Milk,"Cow, buffalo, and goat milk",43
+45,Yogurt,Fresh yogurt,43
+46,Butter,Organic butter,43
+47,Cheese,Organic cheese,43
+48,Paneer,Fresh paneer,43
+49,Soybean Cheese,Soy cheese,43
+50,Beverages,Organic beverages,
+51,Tea,"Green, herbal, and black tea",50
+52,Coffee,"Arabica, robusta, and blends",50
+53,Juices,Cold-pressed and fresh juices,50
+54,Smoothies and Shakes,Healthy smoothies and shakes,50
+55,Snacks and Sweets,Organic snacks and sweets,
+56,Chips and Crackers,Organic chips and crackers,55
+57,Nuts and Seeds,Organic nuts and seeds,55
+58,Dried Fruits,Dried fruits like raisins and apricots,55
+59,Chocolates,Organic chocolates,55
+60,Traditional Sweets,"Indian sweets like ladoos, barfis",55
+61,Bakery and Bread,Organic bakery and bread,
+62,Whole Grain Bread,Whole grain and multi-grain bread,61
+63,Gluten-Free Bread,Gluten-free bread,61
+64,Cookies and Biscuits,Organic cookies and biscuits,61
+65,Cakes and Pastries,Organic cakes and pastries,61
+66,Muffins and Cupcakes,Organic muffins and cupcakes,61
+67,Meat and Poultry,Organic meat and poultry,
+68,Chicken,Organic chicken,67
+69,Eggs,Organic eggs,67
+70,Mutton,Organic mutton,67
+71,Fish and Seafood,Fresh fish and seafood,67
+72,Personal Care,Organic personal care products,
+73,Skin Care,Organic skincare products,72
+74,Lotions,Organic lotions,73
+75,Creams,Organic creams,73
+76,Oils,Organic oils,73
+77,Hair Care,Organic hair care products,72
+78,Shampoos,Organic shampoos,77
+79,Conditioners,Organic conditioners,77
+80,Oral Care,Organic oral care products,72
+81,Toothpaste,Organic toothpaste,80
+82,Mouthwash,Organic mouthwash,80
+83,Soaps and Body Washes,Organic soaps and body washes,72
+84,Pads,Organic sanitary pads,72
+85,Diapers,Organic diapers,72
+86,Home and Living,Organic home and living products,
+87,Cleaning Supplies,Organic cleaning supplies,86
+88,Detergents,Organic detergents,87
+89,Dishwashing Liquid,Organic dishwashing liquid,87
+90,Multi-Surface Cleaners,Organic multi-surface cleaners,87
+91,Eco-Friendly Products,Reusable and eco-friendly products,86
+92,Baby Products,Organic baby products,
+93,Baby Food,Organic baby food,92
+94,Baby Care,Organic lotions and oils for babies,92
+95,Diapers and Wipes,Organic diapers and wipes,92
+96,Baby Clothing,Organic baby clothing,92
+97,Health and Wellness,Health and wellness products,
+98,Supplements,Organic vitamins and supplements,97
+99,Superfoods,Organic superfoods,97
+100,Detox Products,Organic detox products,97
+101,Packaged Foods,Packaged organic foods,
+102,Ready-to-Eat Meals,Organic ready-to-eat meals,101
+103,Pasta and Noodles,Organic pasta and noodles,101
+104,Sauces and Dips,Organic sauces and dips,101
+105,Breakfast Cereals,Organic breakfast cereals,101
+106,Pickles and Preserves,Organic pickles and preserves,101
+107,Pet Care,Organic pet care products,
+108,Pet Food,Organic pet food,107
+109,Pet Grooming,Organic pet grooming products,107
+110,Pet Supplements,Organic pet supplements,107
+111,Gifts and Hampers,Organic gifts and hampers,
+112,Gift Baskets,Organic gift baskets,111
+113,Hampers,Custom hampers for occasions,111
+114,Gardening,Organic gardening products,
+115,Seeds,Organic seeds,114
+116,Fertilizers,Organic fertilizers,114
+117,Compost and Soil Amendments,Organic compost and soil,114
+118,Gardening Tools,Organic gardening tools,114
