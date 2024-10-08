@@ -19,7 +19,7 @@ data class Product(
 
     @ManyToOne
     @JoinColumn(name = "offer_type_id")
-    val offerType: Lookup,
+    val offerType: Lookup? = null,
 
     val active: Boolean,
 ): BaseEntity()

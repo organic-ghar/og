@@ -31,6 +31,10 @@ class CategoryService(
         categoryRepository.deleteById(categoryId)
     }
 
+    fun deleteAll() {
+        categoryRepository.deleteAll()
+    }
+
     fun saveCategories(categories: List<Category>): MutableList<Category> {
         return categoryRepository.saveAll(categories)
     }
