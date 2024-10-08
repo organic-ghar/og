@@ -60,7 +60,7 @@ class CategoryInitializer(
                                 null
                             }
 
-                            val category = Category(id, name, description, resolvedParentId)
+                            val category = Category(id, name, description, resolvedParentId).apply { createdBy = "admin" }
                             categories.add(category)
                         } else {
                             logger.warn("Skipping invalid line: $line")
@@ -68,9 +68,7 @@ class CategoryInitializer(
                     }
             }
 
-/*
             categoryService.saveCategories(categories)
-*/
 
             logger.info("Successfully imported categories from ${file.filename}")
             return true
@@ -79,13 +77,5 @@ class CategoryInitializer(
             return false
         }
     }
-
-
-    data class Category(
-        val id: UUID,
-        val name: String,
-        val description: String,
-        val parentId: UUID? = null
-    )
 }
 
