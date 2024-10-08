@@ -35,6 +35,7 @@ class CategoryInitializer(
     private fun processFile(file: Resource): Boolean {
         logger.info("Importing categories from file: ${file.filename}")
         val categories = mutableListOf<Category>()
+        val idToUuidMap = mutableMapOf<String, UUID>()  // Map to store the mapping between CSV ID and UUID
 
         try {
             val reader = BufferedReader(InputStreamReader(file.inputStream))
@@ -44,11 +45,22 @@ class CategoryInitializer(
                         val columns = line.split(",")
                         if (columns.size >= 4) {
                             val id = UUID.randomUUID()
+                            val csvId = columns[0].trim()  // CSV ID (e.g., "1", "2", etc.)
                             val name = columns[1].trim()
                             val description = columns[2].trim()
-                            val parentId = if (columns[3].isNotBlank()) UUID.randomUUID() else null
+                            val parentId = columns[3].trim()
 
-                            val category = Category(id, name, description, parentId)
+                            // Add the ID to UUID map
+                            idToUuidMap[csvId] = id
+
+                            // Resolve parent UUID if parentId is provided
+                            val resolvedParentId = if (parentId.isNotBlank()) {
+                                idToUuidMap[parentId]
+                            } else {
+                                null
+                            }
+
+                            val category = Category(id, name, description, resolvedParentId)
                             categories.add(category)
                         } else {
                             logger.warn("Skipping invalid line: $line")
@@ -56,7 +68,9 @@ class CategoryInitializer(
                     }
             }
 
+/*
             categoryService.saveCategories(categories)
+*/
 
             logger.info("Successfully imported categories from ${file.filename}")
             return true
