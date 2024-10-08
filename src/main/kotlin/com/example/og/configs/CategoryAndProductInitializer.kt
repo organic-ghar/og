@@ -1,7 +1,6 @@
 package com.example.og.configs
 
 import com.example.og.entities.Category
-import com.example.og.entities.Product
 import com.example.og.service.CategoryService
 import com.example.og.service.ProductService
 import com.example.og.utils.FileResourceLoader

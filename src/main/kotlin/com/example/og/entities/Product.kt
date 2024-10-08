@@ -16,6 +16,7 @@ data class Product(
     val name: String,
     val description: String,
     val price: Double,
+    val featured: Boolean? = false,
 
     @ManyToOne
     @JoinColumn(name = "offer_type_id")
