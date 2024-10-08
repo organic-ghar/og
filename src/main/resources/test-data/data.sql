@@ -2,14 +2,73 @@
 INSERT INTO lookup (id, name, description, value, active, created_by, created_date)
 VALUES (gen_random_uuid(), 'OFFER_TYPE', 'Discount Offer', 'Discount', true, 'admin', now()),
        (gen_random_uuid(), 'OFFER_TYPE', 'Buy 1 Get 1 Offer', 'Buy 1 Get 1', true, 'admin', now()),
+       (gen_random_uuid(), 'NONE', 'N/A', 'N/A', false, 'admin', now()),
        (gen_random_uuid(), 'CUSTOMER_TYPE', 'Regular customer', 'P1', true, 'admin', now()),
        (gen_random_uuid(), 'ORDER_STATUS', 'Order in progress', 'In Progress', true, 'admin', now()),
        (gen_random_uuid(), 'PAYMENT_STATUS', 'Payment pending', 'Not Paid', true, 'admin', now());
 
 -- Insert into Category table
-INSERT INTO category (id, name, description, cat_type_id, created_by, created_date)
-VALUES (gen_random_uuid(), 'Fruits', 'Fresh organic fruits', (SELECT id FROM lookup WHERE name = 'OFFER_TYPE' AND value = 'Discount' LIMIT 1), 'admin', now()),
-       (gen_random_uuid(), 'Vegetables', 'Organic vegetables', (SELECT id FROM lookup WHERE name = 'OFFER_TYPE' AND value = 'Buy 1 Get 1' LIMIT 1), 'admin', now());
+INSERT INTO category (id, name, description, parent_id, cat_type_id, created_by, created_date)
+VALUES (gen_random_uuid(), 'Fruits', 'Fresh organic fruits', null, null, 'admin', now()),
+       (gen_random_uuid(), 'Fruits and Vegetables', 'Fresh organic produce', null, null, 'admin', NOW()),
+       (gen_random_uuid(), 'Grains and Cereals', 'Organic grains and cereals', null, null, 'admin', NOW()),
+       (gen_random_uuid(), 'Pulses and Legumes', 'Organic pulses and legumes', null, null, 'admin', NOW()),
+       (gen_random_uuid(), 'Spices and Condiments', 'Organic spices and condiments', null, null, 'admin', NOW()),
+       (gen_random_uuid(), 'Oils and Ghee', 'Cold-pressed oils and ghee', null, null, 'admin', NOW()),
+       (gen_random_uuid(), 'Dairy Products', 'Organic dairy products', null, null, 'admin', NOW()),
+       (gen_random_uuid(), 'Beverages', 'Organic beverages', null, null, 'admin', NOW()),
+       (gen_random_uuid(), 'Snacks and Sweets', 'Organic snacks and sweets', null, null, 'admin', NOW()),
+       (gen_random_uuid(), 'Bakery and Bread', 'Organic bakery products', null, null, 'admin', NOW()),
+       (gen_random_uuid(), 'Meat and Poultry', 'Organic meat and poultry', null, null, 'admin', NOW()),
+       (gen_random_uuid(), 'Personal Care', 'Organic personal care products', null, null, 'admin', NOW()),
+       (gen_random_uuid(), 'Home and Living', 'Eco-friendly home and living products', null, null, 'admin', NOW()),
+       (gen_random_uuid(), 'Baby Products', 'Organic baby products', null, null, 'admin', NOW()),
+       (gen_random_uuid(), 'Health and Wellness', 'Organic health and wellness products', null, null, 'admin', NOW()),
+       (gen_random_uuid(), 'Packaged Foods', 'Organic packaged foods', null, null, 'admin', NOW()),
+       (gen_random_uuid(), 'Pet Care', 'Organic pet care products', null, null, 'admin', NOW()),
+       (gen_random_uuid(), 'Gifts and Hampers', 'Organic gift baskets and hampers', null, null, 'admin', NOW()),
+       (gen_random_uuid(), 'Gardening', 'Organic gardening supplies', null, null, 'admin', NOW());
+
+-- Insert into Category table (First-level subcategories for 'Fruits and Vegetables')
+INSERT INTO category (id, name, description, parent_id, cat_type_id, created_by, created_date)
+VALUES (gen_random_uuid(), 'Fresh Fruits', 'All types of fresh fruits',
+        (SELECT id FROM category WHERE name = 'Fruits and Vegetables'), null, 'admin', NOW()),
+       (gen_random_uuid(), 'Fresh Vegetables', 'All types of fresh vegetables',
+        (SELECT id FROM category WHERE name = 'Fruits and Vegetables'), null, 'admin', NOW()),
+       (gen_random_uuid(), 'Herbs', 'Fresh herbs',
+        (SELECT id FROM category WHERE name = 'Fruits and Vegetables'), null, 'admin', NOW()),
+       (gen_random_uuid(), 'Exotic Fruits and Vegetables', 'Exotic fruits and vegetables',
+        (SELECT id FROM category WHERE name = 'Fruits and Vegetables'), null, 'admin', NOW());
+
+-- Insert into Category table (First-level subcategories for 'Grains and Cereals')
+INSERT INTO category (id, name, description, parent_id, cat_type_id, created_by, created_date)
+VALUES (gen_random_uuid(), 'Rice', 'Organic rice varieties',
+        (SELECT id FROM category WHERE name = 'Grains and Cereals'), null, 'admin', NOW()),
+       (gen_random_uuid(), 'Wheat', 'Organic wheat varieties',
+        (SELECT id FROM category WHERE name = 'Grains and Cereals'), null, 'admin', NOW()),
+       (gen_random_uuid(), 'Millets', 'Ragi, Bajra, Jowar, etc.',
+        (SELECT id FROM category WHERE name = 'Grains and Cereals'), null, 'admin', NOW()),
+       (gen_random_uuid(), 'Quinoa', 'Organic quinoa',
+        (SELECT id FROM category WHERE name = 'Grains and Cereals'), null, 'admin', NOW()),
+       (gen_random_uuid(), 'Oats', 'Organic oats',
+        (SELECT id FROM category WHERE name = 'Grains and Cereals'), null, 'admin', NOW()),
+       (gen_random_uuid(), 'Barley', 'Organic barley',
+        (SELECT id FROM category WHERE name = 'Grains and Cereals'), null, 'admin', NOW());
+
+-- Insert into Category table (First-level subcategories for 'Pulses and Legumes')
+INSERT INTO category (id, name, description, parent_id, cat_type_id, created_by, created_date)
+VALUES (gen_random_uuid(), 'Lentils', 'Red, Green, Brown lentils',
+        (SELECT id FROM category WHERE name = 'Pulses and Legumes'), null, 'admin', NOW()),
+       (gen_random_uuid(), 'Chickpeas', 'Organic chickpeas',
+        (SELECT id FROM category WHERE name = 'Pulses and Legumes'), null, 'admin', NOW()),
+       (gen_random_uuid(), 'Green Gram', 'Moong dal varieties',
+        (SELECT id FROM category WHERE name = 'Pulses and Legumes'), null, 'admin', NOW()),
+       (gen_random_uuid(), 'Black Gram', 'Urad dal varieties',
+        (SELECT id FROM category WHERE name = 'Pulses and Legumes'), null, 'admin', NOW()),
+       (gen_random_uuid(), 'Kidney Beans', 'Rajma varieties',
+        (SELECT id FROM category WHERE name = 'Pulses and Legumes'), null, 'admin', NOW()),
+       (gen_random_uuid(), 'Peas', 'Organic peas',
+        (SELECT id FROM category WHERE name = 'Pulses and Legumes'), null, 'admin', NOW());
 
 -- Insert into Product table
 INSERT INTO product (id, category_id, name, description, price, offer_type_id, active, created_by, created_date)

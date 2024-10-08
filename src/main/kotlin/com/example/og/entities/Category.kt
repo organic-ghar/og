@@ -11,9 +11,10 @@ data class Category(
 
     val name: String,
     val description: String,
+    val parentId: UUID? = null,
 
     @ManyToOne
     @JoinColumn(name = "cat_type_id")
-    val catType: Lookup,
-): BaseEntity()
+    val catType: Lookup? = null,
+) : BaseEntity()
 
