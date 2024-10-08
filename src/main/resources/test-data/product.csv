@@ -1,0 +1,4 @@
+id,name,description,price,category_id
+1,Apple,Fresh red apples,1.20,2
+2,Banana,Organic bananas,0.50,3
+3,Spinach,Fresh spinach leaves,0.75,8
