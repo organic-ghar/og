@@ -5,6 +5,7 @@ import com.example.og.entities.Category
 import com.example.og.entities.Lookup
 import com.example.og.entities.Product
 import com.example.og.repository.ProductRepository
+import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -43,6 +44,14 @@ class ProductService(
 
     fun deleteAll() {
         productRepository.deleteAll()
+    }
+
+    fun getFeaturedProducts(): List<Product> {
+        return productRepository.findAllFeaturedProducts()
+    }
+
+    fun getNewProducts(): List<Product?> {
+        return productRepository.findNewProducts()?.stream()?.limit(10)?.toList() ?: emptyList()
     }
 
     fun saveProducts(
