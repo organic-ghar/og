@@ -21,6 +21,6 @@ data class ProductReview(
 
     @ManyToOne
     @JoinColumn(name = "rating_id")
-    val rating: Lookup,
+    val rating: Lookup, // this could be the one and only unsaved comment
 ): BaseEntity()
 
